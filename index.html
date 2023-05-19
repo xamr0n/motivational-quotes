@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Classic Typing Game</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      		html {
+		  background: #eee;
+		  block-size: 100%;
+      color: #666;
+		}
+    .card {
+		  text-align: start;
+		  font-family: "Candara";
+      text-align: center;
+		  color: #666;
+		  background: #eee;
+		  font-size: 1.5vw;
+		  border: none;
+		  border-radius: 20px;
+		  margin: 1vw auto;
+		  max-inline-size: 60%;
+		  block-size: auto;
+		  padding: 2vw;
+		}
+		.card {
+		  text-align: start;
+		  font-family: "Candara";
+		  color: rgb(0, 0, 0);
+		  background: #eee;
+		  font-size: 1vw;
+		  border: none;
+		  border-radius: 20px;
+		  margin: 1vw auto;
+      text-shadow: 5px 5px 5px #fff;
+      box-shadow: -10px -5px 25px #fff,
+                  10px 10px 20px #bbb;
+		  max-inline-size: 60%;
+		  block-size: auto;
+		  padding: 2vw;
+		}
+		h1 {
+		  font-family: "Candara";
+		  font-size: 2.5vw;
+		  margin-block-start: 1vh;
+		  margin-block-end: 1vh;
+		  text-align: center;
+		}
+		p {
+		  font-family: "Candara";
+		  font-size: 1.5vw;
+		  margin-block-start: 1vh;
+		  margin-block-end: 1vh;
+		  text-align: start;
+		}
+		.highlight {
+		  background-color: yellow;
+		  color: black;
+		  font-size: 1.5vw;
+		  border: black;
+		  text-decoration: underline solid rgb(68, 68, 68);
+		}
+		.error {
+		  background-color: lightcoral;
+		  border: red;
+		}
+		body {
+		  margin: 1vw auto;
+		  inline-size: 70%;
+		  block-size: 50%;
+		  padding: 3vw;
+		  text-align: center;
+		}
+		button {
+		  margin: 1vh;
+		  color: rgb(0, 0, 0);
+		  inline-size: 5vw;
+		  block-size: 5vh;
+		  font-size: 1vw;
+		  line-height: 2vw;
+		  padding: 1vw auto;
+		  border-radius: 10px;
+		  font-family: Candara;
+		  font-weight: 600;
+		  background: #eee;
+		  border: 1px double #bbb;
+		  box-shadow: 0 5px 5px 5px #eee;
+		}
+		button:hover {
+		  background: rgb(150, 150, 150);
+		  color: rgb(255, 255, 255);
+		}
+
+		input {
+		  margin: 1vh auto;
+		  color: #111;
+		  inline-size: auto;
+		  font-size: 1.5vw;
+		  line-height: 1vw;
+		  padding: 1vh;
+		  font-family: Candara;
+		  background: #eee;
+		  border: none;
+		  border-radius: 10px;
+		  font-weight: 500;
+		}
+    .btn {
+		  background: #eee;
+      border: none;
+      color: #666;
+      display: inline-block;
+      margin: 1px auto;
+      border-radius: 10px;
+      inline-size: 100px;
+      block-size: auto;
+      text-align: center;
+      line-height: 50px;
+      font-size: 20px;
+      cursor: pointer;
+      text-shadow: 5px 5px 5px #fff;
+      box-shadow: -10px -5px 25px #fff,
+                  10px 10px 20px #bbb;
+    }
+        /* Darker background on mouse-over */
+    .btn:hover {
+      font-weight: 550;
+    }
+</style>
+</head>
+<body>
+  <div class="card1">
+    <a href="https://xamr0n.github.io" class="btn btn-circle" style="font-family: Candara" title="Home">m <i class="fa fa-home"></i> n</a>
+  </div> 
+    <div class="container">
+      <h1>Typing Quotes!</h1>
+      <p id="paragraph" style="text-align: center;">Inspirational quotes that can help you stay motivated and focused.</p>
+      <div class="card">
+        <p id="quote"></p>
+        <p id="message"></p>
+      <center>
+        <button type="button" id="start">Start</button>
+      </center>
+      <center>
+        <input type="text" id="typed-value"/>
+      </center>
+      </div>
+    </div>
+    <script>
+      const quotes = [
+        "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.",
+        "Success is not final, failure is not fatal; It is the courage to continue that counts.",
+        "You miss 100% of the shots you do not take. Take a chance on yourself and go for it.",
+        "The only way to do great work is to love what you do. Find your passion and follow it relentlessly.",
+        "Do not let yesterday take up too much of today. Focus on the present and create a better future for yourself.",
+        "If you want to live a happy life, tie it to a goal, not to people or things. Set meaningful goals for yourself and work towards achieving them.",
+        "Believe you can and you are halfway there. Trust in your abilities and have faith in your journey.",
+        "The greatest glory in living lies not in never falling, but in rising every time we fall. Persevere through adversity and come out stronger on the other side.",
+        "The only person you are destined to become is the person you decide to be. Take control of your life and shape it into what you want it to be.",
+        "If you want to achieve greatness, stop asking for permission. Trust in yourself and your abilities to achieve greatness.",
+        "Success is stumbling from failure to failure with no loss of enthusiasm. Keep your head up and your spirits high, even in the face of failure.",
+        "Chase your dreams until you catch them and then dream, catch, and dream again! Pursue your dreams with passion and persistence.",
+        "I am not a product of my circumstances. I am a product of my decisions. Take ownership of your life and make the decisions that will lead you to success.",
+        "Your time is limited, do not waste it living someone else's life. Live your life on your own terms and create your own path.",
+        "The only limits in our life are those we impose on ourselves. Break free from your self-imposed limitations and achieve what you never thought possible.",
+        "Do not watch the clock; do what it does. Keep going. Stay focused on your goals and keep pushing forward.",
+        "Believe in yourself, take on your challenges, dig deep within yourself to conquer fears. Never let anyone bring you down. You got this.",
+        "The best way to predict your future is to create it. Take control of your destiny and create the future you desire.",
+        "Failure will never overtake you, if your determination to succeed is strong enough. Let your determination fuel your success.",
+        "What you get by achieving your goals is not as important as what you become by achieving your goals. Use the process of achieving your goals to grow and improve as a person.",
+        "Do not wait for opportunities, create them. Take initiative and create your own opportunities for success.",
+        "The more that you read, the more things you will know. The more that you learn, the more places you will go. Invest in your personal growth through learning.",
+        "You are never too old to set another goal or to dream a new dream. Do not let age or any other factor hold you back from pursuing your dreams.",
+        "The only true limit to your realization of tomorrow will be your doubts of today. Believe in yourself and your ability to create your own future.",        
+        "The secret of getting ahead is getting started. Do not let fear or procrastination hold you back from taking action towards your goals.",
+        "Do not stop when you are tired. Stop when you are done. Push yourself to the finish line and achieve your goals with determination and perseverance.",
+        "Success is not how high you have climbed, but how you make a positive difference to the world. Use your success to make a positive impact on the world around you.",
+        "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful. Follow your passions and find joy in your work.",
+        "The greatest gift you can give yourself is a little bit of your own attention. Take time to focus on yourself and your personal growth.",
+        "You are the master of your destiny. You can influence, direct and control your own environment. You can make your life what you want it to be. Take control of your life and create the future you desire.",
+        ];
+        
+        let words = [];
+        let wordIndex = 0;
+        let startTime = Date.now();
+
+        const quoteElement = document.getElementById('quote');
+        const messageElement = document.getElementById('message');
+        const typedValueElement = document.getElementById('typed-value');
+        
+        document.getElementById('start').addEventListener('click', () => {
+          const quoteIndex = Math.floor(Math.random() * quotes.length);
+          const quote = quotes[quoteIndex];
+          words = quote.split(' ');
+          wordIndex = 0;
+          
+          const spanWords = words.map(function(word) { return `<span>${word} </span>`});
+          quoteElement.innerHTML = spanWords.join('');
+          quoteElement.childNodes[0].className = 'highlight';
+          messageElement.innerText = '';
+
+          typedValueElement.value = '';
+          typedValueElement.focus();
+          typedValueElement.addEventListener('input', onInput); // add input event listener
+
+          startTime = new Date().getTime();
+
+          const startButton = document.getElementById('start');
+          startButton.style.display = 'none';
+        });
+
+        function onInput() {
+          const currentWord = words[wordIndex];
+          const typedValue = typedValueElement.value;
+            
+            
+          if (typedValue === currentWord && wordIndex === words.length - 1) {
+            const elapsedTime = new Date().getTime() - startTime;
+            const wpm = Math.round(words.length / (elapsedTime / 1000 / 60));
+            const message = `<center>CONGRATULATIONS! <br>You finished in <span style="font-weight: bold">${elapsedTime / 1000}</span> seconds<br><span style="font-weight: bold">${wpm}</span> words per minute (wpm).</center><br>`;
+            messageElement.innerHTML = message;
+            typedValueElement.removeEventListener('input', onInput);
+            const startButton = document.getElementById('start');
+            startButton.style.display = 'block';
+
+          } else if (typedValue.endsWith(' ') && typedValue.trim() === currentWord) {
+            typedValueElement.value = '';
+            wordIndex++;
+      
+            for (const wordElement of quoteElement.childNodes) {
+            wordElement.className = '';
+
+            }
+            quoteElement.childNodes[wordIndex].className = 'highlight';
+          } else if (currentWord.startsWith(typedValue)) {
+            typedValueElement.className = '';
+          } else {
+            typedValueElement.className = 'error';
+          }
+        }
+          
+        document.getElementById("start").addEventListener("click", function() {
+          document.getElementById("typed-value").focus();
+        });    
+    </script>
+</body>
+</html>
